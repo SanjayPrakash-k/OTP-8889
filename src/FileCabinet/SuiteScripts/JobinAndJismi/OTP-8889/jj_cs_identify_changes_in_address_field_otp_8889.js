@@ -1,14 +1,39 @@
 /**
- * @NApiVersion 2.x
+ * @NApiVersion 2.1
  * @NScriptType ClientScript
  * @NModuleScope SameAccount
  */
-define(['N/log', 'N/record'],
+/*************************************************************************************
+ ***********
+ *
+ *
+ * ${OTP-8889} : ${Identify change in Address}
+ *
+ *
+ **************************************************************************************
+ ********
+ *
+ * Author: Jobin and Jismi IT Services
+ *
+ * Date Created : 27-May-2025
+ *
+ * Description : This script is for updating the created custom checkbox. Whenever there is a change in exiting address 
+ * or new address is added to the Customer Record, the custom field should be checked. This should work only in Edit context.
+ *
+ *
+ * REVISION HISTORY
+ *
+ * @version 1.0  :  27-May-2025:  The initial build was created by JJ0404
+ *
+ *
+ *
+ *************************************************************************************
+ **********/
+define(['N/log'],
 /**
  * @param{log} log
- * @param{record} record
  */
-function(log, record) {
+function(log) {
     /**
      * Function to be executed when field is changed.
      *
@@ -22,11 +47,13 @@ function(log, record) {
      * @since 2015.2
      */
     function fieldChanged(scriptContext) {
-        
         handleAddressUpdate();
-
     }
 
+    /**
+    * Function to update the custom checkbox based on the changes in the address or other fields
+    * @param {void}
+    */
     function handleAddressUpdate(){
         try{
             if(scriptContext.fieldId == 'defaultaddress'){
@@ -43,7 +70,7 @@ function(log, record) {
                 });
             }
         } catch(error) {
-            console.log('Unexpected error occured', error.toString());
+            log.debug('Unexpected error occured', error.toString());
         }
     }
     
