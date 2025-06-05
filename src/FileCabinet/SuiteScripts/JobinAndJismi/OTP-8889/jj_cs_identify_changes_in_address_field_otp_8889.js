@@ -70,7 +70,7 @@ function(log) {
                 });
             }
         } catch(error) {
-            log.debug('Unexpected error occured', error.toString());
+            log.error('Unexpected error occured', error.toString());
         }
     }
     
