@@ -60,6 +60,12 @@ function(log, record) {
         handleAddressUpdate(scriptContext);
     }
 
+    function lineInit(scriptContext) {
+        console.log('lineInit triggered');
+        isAddressChanged =true;
+        handleAddressUpdate(scriptContext);
+    }
+
     /**
     * Function to find current mode. Whether the record is in create mode or edit mode.
     * @param scriptContext
@@ -77,6 +83,7 @@ function(log, record) {
             console.log('Mode', recordMode);
             if(recordMode === 'edit'){
                 if(scriptContext.fieldId == 'defaultaddress'){
+                    console.log('defaultaddress subtab');
                     scriptContext.currentRecord.setValue({
                         fieldId: 'custentity_jj_address_change_indicator',
                         value: true,
@@ -109,7 +116,8 @@ function(log, record) {
     
     return {
         pageInit: pageInit,
-        fieldChanged: fieldChanged
+        fieldChanged: fieldChanged,
+        lineInit: lineInit
     };
     
 });
